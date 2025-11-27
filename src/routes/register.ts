@@ -1,9 +1,6 @@
 import express from 'express'
-import { UserController } from '../controllers/UserController'
 
-const usersRoutes = express.Router()
-const userController = new UserController()
+const registerRoutes = express.Router()
 
-usersRoutes.post('/', userController.createNewUser.bind(userController))
 
-export { usersRoutes }
+export { registerRoutes }
