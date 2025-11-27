@@ -40,7 +40,7 @@ pool.once('connect', () => {
         `)
 });
 
-export async function connect() {
+async function connect() {
     try {
         logger.info(`Connecting to db ${URL}`);
         await pool.connect();
