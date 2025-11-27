@@ -1,6 +1,7 @@
+import type { UUID } from 'crypto';
 import { pool } from './postgres.js';
 
-module.exports.insertPerson = async function (id, { apelido, nome, nascimento, stack }) {
+module.exports.insertPerson = async function (id: UUID, { apelido, nome, nascimento, stack }: { apelido: string; nome: string; nascimento: string; stack: string[] }) {
     const query = `
     INSERT INTO
      pessoas(
