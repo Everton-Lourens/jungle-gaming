@@ -1,0 +1,24 @@
+version: '1.0'
+services:
+  app1: &app
+    build: .
+    hostname: app1
+    environment:
+      NODE_ENV: production
+    expose:
+    - "8080"
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "1G"
+  app2:
+    <<: *app
+    hostname: app2
+
+    
