@@ -1,18 +1,18 @@
 import express from 'express'
-import { RegisterController } from '../controllers/RegisterController.js'
+import { UserController } from '../controllers/UserController.js'
 import { validateBody } from '../middlewares/validate.js'
 
-const registerRoutes = express.Router()
+const userRoutes = express.Router()
 
-const userController = new RegisterController()
+const userController = new UserController()
 
-registerRoutes.get('/', validateBody, userController.createNewUser.bind(userController))
+userRoutes.get('/', validateBody, userController.createNewUser.bind(userController))
 
-registerRoutes.post('/', (req, res, _) => {
+userRoutes.post('/', (req, res, _) => {
     res.status(200).send(`<h1>Servidor acessando o endpoint /register!</h1>`)
 })
 
-export { registerRoutes }
+export { userRoutes }
 
 
 
