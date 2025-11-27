@@ -1,5 +1,6 @@
 {
   "name": "jungle-gaming",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,6 +21,11 @@
   },
   "homepage": "https://github.com/Everton-Lourens/jungle-gaming#readme",
   "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.1",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
   }
 }
