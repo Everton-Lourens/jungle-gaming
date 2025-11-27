@@ -3,7 +3,9 @@ import { logger } from '../helpers/logger.js';
 
 export const validateBody = (req: Request, _res: Response, Next: NextFunction): boolean => {
     try {
-        const { apelido, nome, nascimento, stack } = req?.body?.params
+        logger.info(req?.body);
+        
+        const { apelido, nome, nascimento, stack } = req?.body;
 
         if (!apelido && typeof apelido !== 'string')
             return false;
@@ -17,6 +19,7 @@ export const validateBody = (req: Request, _res: Response, Next: NextFunction): 
         Next();
         return true
     } catch (error: any) {
+        Next(error.message);
         logger.error('Erro de validação');
         logger.error(error.message);
         return false;

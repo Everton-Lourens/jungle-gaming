@@ -23,7 +23,7 @@ export async function insertPerson (id: string, { apelido, nome, nascimento, sta
     return pool.query(query, [id, apelido, nome, nascimento, JSON.stringify(stack)]);
 }
 
-export async function findById(id: UUID) {
+export async function findById(id: string) {
     const query = `
     SELECT
         id,

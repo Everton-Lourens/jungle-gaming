@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { userRoutes } from './register.js'
+import { userRoutes } from './user.js'
 
 const routes = Router()
 
-routes.use('/register', userRoutes)
+routes.use('/user', userRoutes)
 
 export { routes }

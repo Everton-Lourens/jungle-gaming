@@ -1,0 +1,4 @@
+- [ ] Correct getUserById in UserController.ts: Change catch block to return 500 for server errors
+- [ ] Add existsByApelido method in UserController.ts
+- [ ] Add count method in UserController.ts
+- [ ] Add routes for existsByApelido and count in user.ts
