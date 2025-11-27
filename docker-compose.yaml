@@ -5,6 +5,9 @@ services:
     hostname: app1
     environment:
       NODE_ENV: production
+      DB_URL: postgres://postgres:12345678@db:5432/postgres
+      DB_POOL: 50
+      PINO_LOG_LEVEL: debug
     expose:
     - "8080"
     ulimits:
