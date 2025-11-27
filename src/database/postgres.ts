@@ -3,11 +3,12 @@ import { logger } from '../helpers/logger.js';
 
 const URL = process.env.DB_URL || 'postgres://postgres:12345678@localhost:5432/postgres';
 
-export const pool = new pg.Pool({ connectionString: URL,
+export const pool = new pg.Pool({
+    connectionString: URL,
     max: (Number(process.env.DB_POOL) || 200),
     idleTimeoutMillis: 0,
     connectionTimeoutMillis: 10000
-    });
+});
 
 pool.on('error', connect);
 
@@ -39,11 +40,11 @@ pool.once('connect', () => {
         `)
 });
 
-async function connect() {
+export async function connect() {
     try {
         logger.info(`Connecting to db ${URL}`);
         await pool.connect();
-    } catch(err){
+    } catch (err) {
         setTimeout(() => {
             connect();
             logger.error(`database.js: an error occured when connecting ${err} retrying connection on 3 secs`);

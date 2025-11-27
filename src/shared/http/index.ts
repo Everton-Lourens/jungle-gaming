@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 import { routes } from '../../routes/index.js';
 import express, { type Express } from 'express'
 import { logger } from '../../helpers/logger.js';
+import { connect } from '../../database/postgres.js';
 
 interface CustomExpress extends Express {
   postgres?: any
@@ -14,5 +15,6 @@ app.use(bodyParser.json())
 app.use(routes)
 
 app.listen(PORT, () => {
-    logger.info(`Servidor rodando na porta ${PORT}`)
+  logger.info(`Servidor rodando na porta ${PORT}`)
+  connect();
 })
