@@ -1,7 +1,7 @@
-import type { Request, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import { logger } from '../helpers/logger.js';
 
-export const validateBody = (req: Request, _res: Response): boolean => {
+export const validateBody = (req: Request, _res: Response, Next: NextFunction): boolean => {
     try {
         const { apelido, nome, nascimento, stack } = req?.body?.params
 
@@ -14,6 +14,7 @@ export const validateBody = (req: Request, _res: Response): boolean => {
         if (!stack && typeof stack !== 'string')
             return false;
 
+        Next();
         return true
     } catch (error: any) {
         logger.error('Erro de validação');
