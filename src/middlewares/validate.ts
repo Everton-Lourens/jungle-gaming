@@ -3,21 +3,15 @@ import { logger } from '../helpers/logger.js';
 
 export const validateBody = (req: Request, _res: Response): boolean => {
     try {
-        const client = req?.body?.params
+        const { apelido, nome, nascimento, stack } = req?.body?.params
 
-        const requiredFields = ["apelido", "nome", "nascimento", "stack"];
-        const missingFields = requiredFields.filter(field => !String(client[field]));
-
-        if (missingFields.length > 0)
+        if (!apelido && typeof apelido !== 'string')
             return false;
-
-        const { userId, clientId, message } = client;
-
-        if (!userId && typeof userId !== 'string')
+        if (!nome && typeof nome !== 'string')
             return false;
-        if (!clientId && typeof clientId !== 'string')
+        if (!nascimento && typeof nascimento !== 'string')
             return false;
-        if (typeof message !== 'string' || message.trim() === '')
+        if (!stack && typeof stack !== 'string')
             return false;
 
         return true
