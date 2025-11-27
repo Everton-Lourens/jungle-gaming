@@ -2,7 +2,7 @@ import type { UUID } from 'crypto';
 import { pool } from './postgres.js';
 import { logger } from '../helpers/logger.js';
 
-module.exports.insertPerson = async function (id: UUID, { apelido, nome, nascimento, stack }: { apelido: string; nome: string; nascimento: string; stack: string[] }) {
+export async function insertPerson (id: string, { apelido, nome, nascimento, stack }: { apelido: string; nome: string; nascimento: string; stack: string[] }) {
     const query = `
     INSERT INTO
      pessoas(
@@ -23,7 +23,7 @@ module.exports.insertPerson = async function (id: UUID, { apelido, nome, nascime
     return pool.query(query, [id, apelido, nome, nascimento, JSON.stringify(stack)]);
 }
 
-module.exports.findById = async function findById(id: UUID) {
+export async function findById(id: UUID) {
     const query = `
     SELECT
         id,
@@ -38,7 +38,7 @@ module.exports.findById = async function findById(id: UUID) {
     return pool.query(query, [id]);
 }
 
-module.exports.findByTerm = async function findByTerm(term: string) {
+export async function findByTerm(term: string) {
     const query = `
     SELECT
         id,
@@ -54,13 +54,13 @@ module.exports.findByTerm = async function findByTerm(term: string) {
     return pool.query(query, [`%${term}%`]);
 }
 
-module.exports.existsByApelido = async function existsByApelido(apelido: string) {
+export async function existsByApelido(apelido: string) {
     const querySet = await pool.query(`SELECT COUNT(1) FROM pessoas WHERE "apelido" = $1`, [apelido])
     const [ result ] = querySet.rows;
     return result;
 }
 
-module.exports.count = async function count() {
+export async function count() {
     return pool.query(`SELECT COUNT(1) FROM pessoas`);
 }
 
