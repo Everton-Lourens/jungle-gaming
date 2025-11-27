@@ -1,0 +1,25 @@
+{
+  "name": "jungle-gaming",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "npm run build && node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Everton-Lourens/jungle-gaming.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Everton-Lourens/jungle-gaming/issues"
+  },
+  "homepage": "https://github.com/Everton-Lourens/jungle-gaming#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
