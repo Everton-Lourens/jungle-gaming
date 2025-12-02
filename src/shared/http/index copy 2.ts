@@ -21,11 +21,6 @@ const app: CustomExpress = express();
 app.use(bodyParser.json());
 app.use(routes);
 
-// get
-app.get('/', (req, res) => {
-  res.send(`<h1>Servidor rodando!</h1>`);
-});
-
 // Inicia servidor
 app.listen(PORT, () => {
   logger.info(`🚀 Servidor rodando na porta ${PORT}`);

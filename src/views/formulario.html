@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário de Usuário</title>
+</head>
+<body>
+  <h1>Cadastro de Usuário</h1>
+  <form action="/user" method="POST">
+    <label for="apelido">Apelido:</label><br>
+    <input type="text" id="apelido" name="apelido" required><br><br>
+
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" name="nome" required><br><br>
+
+    <label for="nascimento">Nascimento:</label><br>
+    <input type="date" id="nascimento" name="nascimento" required><br><br>
+
+    <label for="stack">Stack (separe por vírgula):</label><br>
+    <input type="text" id="stack" name="stack" placeholder="node,react,ts"><br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+</body>
+</html>

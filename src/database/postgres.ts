@@ -16,7 +16,14 @@ pool.once('connect', () => {
     logger.info(`database.js: Connected  to db ${URL}`)
     logger.info(`Creating table "pessoas" if not exists`);
     return pool.query(`
-        CREATE EXTENSION IF NOT EXISTS pg_trgm;
+        DO $$
+        BEGIN
+            IF NOT EXISTS (
+                SELECT 1 FROM pg_extension WHERE extname = 'pg_trgm'
+            ) THEN
+                CREATE EXTENSION pg_trgm;
+            END IF;
+        END $$;
 
         CREATE OR REPLACE FUNCTION generate_searchable(_nome VARCHAR, _apelido VARCHAR, _stack JSON)
             RETURNS TEXT AS $$

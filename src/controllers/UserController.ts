@@ -6,6 +6,7 @@ import { logger } from '../helpers/logger.js';
 export class UserController {
     async createNewUser(req: Request, res: Response): Promise<Response> {
         const id: string = uuidv4();
+        logger.info(`Creating user with id: ${id}`);
         return insertPerson(id, req.body).then(() => {
             logger.info(`/user/${id}`);
             res.status(201).location(`/user/${id}`).end();
@@ -29,17 +30,27 @@ export class UserController {
     }
 
     async findTerm(req: Request, res: Response): Promise<Response> {
-        if (!req.query['t']) {
-            return res.status(400).end();
+        const apelido = req.params.apelido;
+        if (!apelido) {
+            res.status(400).end();
+            return res;
         }
-        try {
-            const queryResults = await findByTerm(req.query.t as string);
-            return res.json(queryResults.rows);
-        } catch {
-            return res.status(404).end();
-        }
+        return findByTerm(apelido).then((queryResults) => {
+            res.json(queryResults.rows);
+            return res;
+        }).catch(() => {
+            res.status(404).end();
+            return res;
+        })
     }
 
-
-
+    async getCount(_req: Request, res: Response): Promise<Response> {
+        try {
+            const queryResult = await count();
+            const [result] = queryResult.rows;
+            return res.json(result);
+        } catch {
+            return res.status(500).end();
+        }
+    }
 }

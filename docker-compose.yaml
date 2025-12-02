@@ -10,9 +10,9 @@ services:
       DB_POOL: 100
       PINO_LOG_LEVEL: debug
     expose:
-    - "8080"
-    #depends_on:
-      #- postgres
+      - 8080
+    depends_on:
+      - postgres
     ulimits:
       nproc: 1000000
       nofile:
@@ -46,5 +46,17 @@ services:
         limits:
           cpus: '0.4'
           memory: '1.5GB'
-
-    
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      app1:
+        condition: service_started
+      app2:
+        condition: service_started
+#    depends_on:
+#      - app1
+#      - app2
+    ports:
+      - "9999:9999"
